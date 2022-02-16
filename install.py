@@ -18,7 +18,7 @@ if not checkInstalled('wiktionaryparser'):
 from pathlib import Path
 home = str(Path.home())
 if platform.system() == "Windows":
-  installLoc = os.path.join(home, 'latinlookup.bat')
+  installLoc = os.path.join(home, 'dictionarylookup.bat')
   f = open(installLoc, "w")
   f.write(
           "@echo off\n"
@@ -29,5 +29,5 @@ else:
   print("Unsupported OS :(")
   input()
   sys.exit()
-input("Succesfully installed, run with latinlookup <word>\nPress enter to exit.")
+input("Succesfully installed, run with dictionarylookup <word> -lang <language>\nPress enter to exit.")
 sys.exit()

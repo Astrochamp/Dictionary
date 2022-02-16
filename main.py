@@ -29,9 +29,13 @@ elines = lambda: print("-"*int(columns)+'\n')
 wrapper = textwrap.TextWrapper(initial_indent='   ', width=int(columns), subsequent_indent='   ')
 
 while True:
-  word = str(input("Enter your word: \n"))
+  word = str(input("Enter your word: \n")).lower()
+  language = str(input("Enter the language of that word: \n")).lower()
   try:
-    rawText = str(parser.fetch(word, "latin"))
+    try:
+      rawText = str(parser.fetch(word, language))
+    except:
+      rawText = str(parser.fetch(word, "english"))
     dicted = ast.literal_eval(rawText)[0]
     defs = dicted["definitions"][0]
     slines()

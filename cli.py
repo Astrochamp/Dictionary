@@ -12,13 +12,16 @@ try:
   elines = lambda: print("-"*int(columns)+'\n')
   wrapper = textwrap.TextWrapper(initial_indent='   ', width=int(columns), subsequent_indent='   ')
   import argparse
-  argparser = argparse.ArgumentParser(description='Look up the definition of (most) Latin words')
+  argparser = argparse.ArgumentParser(description='Look up the definition of (most) words')
   argparser.add_argument('word', metavar='word', type=str, help='the word to define')
+  argparser.add_argument('-lang', type=str, help='the language that the word is in', nargs='?', const="english", default="english")
   args = argparser.parse_args()
   
-  word = args.word
+  word = args.word.lower()
+  language = (args.lang).lower()
+
   try:
-    rawText = str(parser.fetch(word, "latin"))
+    rawText = str(parser.fetch(word, language))
     dicted = ast.literal_eval(rawText)[0]
     defs = dicted["definitions"][0]
     slines()
@@ -31,6 +34,6 @@ try:
     print(f"{'Word not found!'.center(int(columns))}")
     elines()
 except:
-  print("Error, something went wrong! Have you run the installer yet?")
+  print("Oops, something went wrong! Have you run the installer yet?")
   input()
   sys.exit()
