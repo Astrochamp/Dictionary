@@ -29,6 +29,8 @@ elines = lambda: print("-"*int(columns)+'\n')
 wrapper = textwrap.TextWrapper(initial_indent='   ', width=int(columns), subsequent_indent='   ')
 
 while True:
+  columns = str(os.get_terminal_size())
+  columns = columns[columns.find("=")+1:columns.find(",")]
   word = str(input("Enter your word: \n")).lower()
   language = str(input("Enter the language of that word: \n")).lower()
   try:
